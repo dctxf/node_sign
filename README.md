@@ -242,4 +242,7 @@ npm start
 浏览器输入 http://localhost:3000 访问（期间可以自己查看mongodb数据库里边nodedb --> user 数据的改动，使用mongoVUE或者命令查看）
 
 
+原文看起来有点费劲我擅自改动了，希望作者不要打我
+http://www.cnblogs.com/Leo_wl/p/4361289.html
+
 
