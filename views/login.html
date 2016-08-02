@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    <%= title %>
+  </title>
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+</head>
+
+<body>
+  <h4 id="message"></h4>
+  <fieldset>
+    <legend>用户登录</legend>
+    <input type="text" id="username" name="username" placeholder="请输入用户名" required>
+    <input type="text" id="password" name="password" placeholder="请输入密码" required>
+    <button type="submit" id="loginBtn">登录</button>
+    <button type="button" id="registBtn">注册</button>
+  </fieldset>
+</body>
+</head>
+<script type="text/javascript">
+$(function() {
+  var $message = $('#message');
+  /*注册*/
+  $("#registBtn").click(function() {
+    var username = $("#username").val();
+    var password = $("#password").val();
+    var data = {
+      "uname": username,
+      "upwd": password
+    };
+    $.ajax({
+      url: '/register',
+      type: 'post',
+      data: data,
+      timeout: 1000,
+      success: function(data, status) {
+        if (status == 'success' && data.code !== 200) {
+          $message.text(data.msg);
+        } else if (status === 'success' && data.code === 200) {
+          $message.text(data.msg + '页面将在3秒后跳转');
+          var timer = setTimeout(function() {
+            location.href = 'home';
+          }, 3000);
+        }
+      },
+      error: function(data, err) {
+        alert(err);
+      }
+    });
+  });
+  $("#loginBtn").click(function() {
+    var username = $("#username").val();
+    var password = $("#password").val();
+    var data = {
+      "uname": username,
+      "upwd": password
+    };
+    $.ajax({
+      url: '/login',
+      type: 'post',
+      data: data,
+      timeout: 1000,
+      success: function(data, status) {
+        if (status === 'success' && data.code !== 200) {
+          $message.text(data.msg);
+        } else if (status === 'success' && data.code === 200) {
+          location.href = 'home';
+        }
+      },
+      error: function(data, status) {
+        if (status == 'error') {
+          alert(status);
+        }
+      }
+    });
+  });
+
+});
+</script>
+
+</html>
