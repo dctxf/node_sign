@@ -17,8 +17,8 @@ var app = express();
 
 // 数据库
 global.dbHandel = require('./database/dbHandel');
-// global.db = mongoose.connect("mongodb://localhost:27017/nodedb");
-global.db = mongoose.connect("mongodb://dctxf:19891010@ds139985.mlab.com:39985/dctmz");
+global.db = mongoose.connect("mongodb://localhost:27017/nodedb");
+// global.db = mongoose.connect("mongodb://dctxf:19891010@ds139985.mlab.com:39985/dctmz");
 var app = express();
 app.use(session({
   secret: 'secret',
